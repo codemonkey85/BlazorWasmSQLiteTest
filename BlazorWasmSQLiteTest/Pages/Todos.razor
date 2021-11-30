@@ -1,0 +1,35 @@
+﻿@page "/todos"
+@inject HttpClient Http
+
+<PageTitle>Weather forecast</PageTitle>
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (todos == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Is Complete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var todo in todos)
+            {
+                <tr>
+                    <td>@todo.Id.ToString()</td>
+                    <td>@todo.Title</td>
+                    <td>@todo.IsComplete.ToString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
