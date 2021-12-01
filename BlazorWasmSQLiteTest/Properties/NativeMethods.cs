@@ -39,34 +39,34 @@ namespace BlazorWasmSQLiteTest.Properties
 		public static extern unsafe int sqlite3_stmt_status(sqlite3_stmt stm, int op, int resetFlg);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_bind_parameter_name(sqlite3_stmt stmt, int index);
+		public static extern unsafe byte* sqlite3_bind_parameter_name(sqlite3_stmt stmt, int index);
 
 		//[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		//public static extern IntPtr sqlite3_column_database_name(sqlite3_stmt stmt, int index);
+		//public static extern unsafe byte* sqlite3_column_database_name(sqlite3_stmt stmt, int index);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_column_decltype(sqlite3_stmt stmt, int index);
+		public static extern unsafe byte* sqlite3_column_decltype(sqlite3_stmt stmt, int index);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_column_name(sqlite3_stmt stmt, int index);
+		public static extern unsafe byte* sqlite3_column_name(sqlite3_stmt stmt, int index);
 
 		//[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		//public static extern IntPtr sqlite3_column_origin_name(sqlite3_stmt stmt, int index);
+		//public static extern unsafe byte* sqlite3_column_origin_name(sqlite3_stmt stmt, int index);
 
 		//[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		//public static extern IntPtr sqlite3_column_table_name(sqlite3_stmt stmt, int index);
+		//public static extern unsafe byte* sqlite3_column_table_name(sqlite3_stmt stmt, int index);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_column_text(sqlite3_stmt stmt, int index);
+		public static extern unsafe byte* sqlite3_column_text(sqlite3_stmt stmt, int index);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_errmsg(sqlite3 db);
+		public static extern unsafe byte* sqlite3_errmsg(sqlite3 db);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
 		public static extern unsafe int sqlite3_db_readonly(sqlite3 db, byte* dbName);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern unsafe IntPtr sqlite3_db_filename(sqlite3 db, byte* att);
+		public static extern unsafe byte* sqlite3_db_filename(sqlite3 db, byte* att);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
 		public static extern unsafe int sqlite3_prepare_v2(sqlite3 db, byte* pSql, int nBytes, out IntPtr stmt, out byte* ptrRemain);
@@ -84,13 +84,13 @@ namespace BlazorWasmSQLiteTest.Properties
 		public static extern unsafe int sqlite3_compileoption_used(byte* pSql);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_compileoption_get(int n);
+		public static extern unsafe byte* sqlite3_compileoption_get(int n);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
 		public static extern unsafe int sqlite3_table_column_metadata(sqlite3 db, byte* dbName, byte* tblName, byte* colName, out byte* ptrDataType, out byte* ptrCollSeq, out int notNull, out int primaryKey, out int autoInc);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_value_text(IntPtr p);
+		public static extern unsafe byte* sqlite3_value_text(IntPtr p);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
 		public static extern unsafe int sqlite3_enable_load_extension(sqlite3 db, int enable);
@@ -105,7 +105,7 @@ namespace BlazorWasmSQLiteTest.Properties
 		public static extern unsafe int sqlite3_shutdown();
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_libversion();
+		public static extern unsafe byte* sqlite3_libversion();
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
 		public static extern unsafe int sqlite3_libversion_number();
@@ -114,7 +114,7 @@ namespace BlazorWasmSQLiteTest.Properties
 		public static extern unsafe int sqlite3_threadsafe();
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_sourceid();
+		public static extern unsafe byte* sqlite3_sourceid();
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
 		public static extern unsafe IntPtr sqlite3_malloc(int n);
@@ -207,7 +207,7 @@ namespace BlazorWasmSQLiteTest.Properties
 		public static extern unsafe int sqlite3_step(sqlite3_stmt stmt);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_sql(sqlite3_stmt stmt);
+		public static extern unsafe byte* sqlite3_sql(sqlite3_stmt stmt);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
 		public static extern unsafe double sqlite3_column_double(sqlite3_stmt stmt, int index);
@@ -359,7 +359,7 @@ namespace BlazorWasmSQLiteTest.Properties
 		public static extern unsafe int sqlite3_extended_errcode(sqlite3 db);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
-		public static extern IntPtr sqlite3_errstr(int rc);
+		public static extern unsafe byte* sqlite3_errstr(int rc);
 
 		[DllImport(SQLITE_DLL, ExactSpelling = true, CallingConvention = CALLING_CONVENTION)]
 		public static extern unsafe void sqlite3_log(int iErrCode, byte* zFormat);
