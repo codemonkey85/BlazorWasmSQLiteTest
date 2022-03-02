@@ -1,25 +1,52 @@
-namespace BlazorWasmSQLiteTest.Pages
+namespace BlazorWasmSQLiteTest.Pages;
+
+public partial class Todos
 {
-    public partial class Todos
+    private ClientSideDbContext? db;
+    private IList<Todo>? todos;
+
+    protected override async Task OnInitializedAsync()
     {
-        ClientSideDbContext? db;
-        private Todo[]? todos;
+        db = await DataSynchronizer.GetPreparedDbContextAsync();
+        DataSynchronizer.OnUpdate += StateHasChanged;
 
-        protected override async Task OnInitializedAsync()
+        if (db is not null)
         {
-            db = await DataSynchronizer.GetPreparedDbContextAsync();
-            DataSynchronizer.OnUpdate += StateHasChanged;
+            todos = db.Todos.ToList();
+        }
+    }
 
-            if (db != null)
-            {
-                todos = db.Todos.ToArray();
-            }
+    public void Dispose()
+    {
+        db?.Dispose();
+        DataSynchronizer.OnUpdate -= StateHasChanged;
+    }
+
+    private async Task DeleteTodo(Todo todo)
+    {
+        if (db is null)
+        {
+            return;
         }
 
-        public void Dispose()
+        db.Remove(todo);
+        await db.SaveChangesAsync();
+        todos = db.Todos.ToList();
+    }
+
+    private async Task AddNewTodo()
+    {
+        if (db is null)
         {
-            db?.Dispose();
-            DataSynchronizer.OnUpdate -= StateHasChanged;
+            return;
         }
+
+        db.Add(new Todo
+        {
+            Title = "Another one",
+            IsComplete = false,
+        });
+        await db.SaveChangesAsync();
+        todos = db.Todos.ToList();
     }
 }

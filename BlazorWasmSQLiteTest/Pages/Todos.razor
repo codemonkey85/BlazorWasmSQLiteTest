@@ -1,13 +1,11 @@
 ﻿@page "/todos"
 @inject HttpClient Http
 
-<PageTitle>Weather forecast</PageTitle>
+<PageTitle>Todos</PageTitle>
 
-<h1>Weather forecast</h1>
+<h1>Todos</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
-
-@if (todos == null)
+@if (todos is null)
 {
     <p><em>Loading...</em></p>
 }
@@ -19,6 +17,8 @@ else
                 <th>Id</th>
                 <th>Title</th>
                 <th>Is Complete</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,8 +28,12 @@ else
                     <td>@todo.Id.ToString()</td>
                     <td>@todo.Title</td>
                     <td>@todo.IsComplete.ToString()</td>
+                    <td><button class="btn btn-danger" @onclick=@(async () => await DeleteTodo(todo))>Delete</button></td>
                 </tr>
             }
         </tbody>
     </table>
+    <div>
+        <button class="btn btn-primary" @onclick=@(async () => await AddNewTodo())>Add New</button>
+    </div>
 }
